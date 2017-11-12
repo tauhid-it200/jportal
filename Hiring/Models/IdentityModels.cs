@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNet.Identity.EntityFramework;
+﻿using System.Data.Entity;
+using Microsoft.AspNet.Identity.EntityFramework;
 
 namespace Hiring.Models
 {
@@ -9,6 +10,12 @@ namespace Hiring.Models
 
     public class ApplicationDbContext : IdentityDbContext<ApplicationUser>
     {
+        public DbSet<Employer> Employers { get; set; }
+        public DbSet<JobSeeker> JobSeekers { get; set; }
+        public DbSet<Job> Jobs { get; set; }
+        public DbSet<BookmarkedJob> BookmarkedJobs { get; set; }
+        public DbSet<AppliedJob> AppliedJobs { get; set; }
+
         public ApplicationDbContext()
             : base("DefaultConnection")
         {

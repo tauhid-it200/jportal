@@ -6,11 +6,9 @@ using System.Web.Mvc;
 
 namespace Hiring.Controllers
 {
-    [Route]
+    [AllowAnonymous]
     public class HomeController : Controller
     {
-        
-       [Route("~/hiring", Name = "default")]
         public ActionResult Index()
         {
             return View();
