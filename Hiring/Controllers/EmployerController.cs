@@ -14,5 +14,10 @@ namespace Hiring.Controllers
         {
             return View();
         }
+
+        public ActionResult JobPosting()
+        {
+            return View();
+        }
 	}
 }

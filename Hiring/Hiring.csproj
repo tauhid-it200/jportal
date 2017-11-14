@@ -172,6 +172,10 @@
     <Compile Include="Migrations\201711121339396_InitialMigration1.Designer.cs">
       <DependentUpon>201711121339396_InitialMigration1.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201711130452427_NewPropertyAddedInJob.cs" />
+    <Compile Include="Migrations\201711130452427_NewPropertyAddedInJob.Designer.cs">
+      <DependentUpon>201711130452427_NewPropertyAddedInJob.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\AppliedJob.cs" />
@@ -230,6 +234,7 @@
     <Content Include="Views\Account\Register.cshtml" />
     <Content Include="Views\Shared\_LoginPartial.cshtml" />
     <Content Include="Views\Employer\Index.cshtml" />
+    <Content Include="Views\Employer\JobPosting.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -247,6 +252,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201711121339396_InitialMigration1.resx">
       <DependentUpon>201711121339396_InitialMigration1.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201711130452427_NewPropertyAddedInJob.resx">
+      <DependentUpon>201711130452427_NewPropertyAddedInJob.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

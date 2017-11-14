@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
-
-namespace Hiring.Models
+﻿namespace Hiring.Models
 {
     public class Job
     {
@@ -17,6 +12,8 @@ namespace Hiring.Models
         public string JobLocation { get; set; }
         public string Salary { get; set; }
         public string SpecialInfo { get; set; }
+        public string PublicationDate { get; set; }
+        public string Deadline { get; set; }
         public int EmployerId { get; set; }
         public virtual Employer Employer { get; set; }
     }
