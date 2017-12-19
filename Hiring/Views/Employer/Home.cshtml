@@ -1,0 +1,17 @@
+﻿
+@{
+    ViewBag.Title = "Home";
+    Layout = "~/hiring/Views/Shared/_Layout.cshtml";
+}
+
+<div class="row">
+    <div class="col-md-offset-2 col-md-8 text-center">
+        @if (Session["message"] != null)
+        {
+            <p>@Session["message"]</p>
+            Session["message"] = null;
+        }
+        <br />
+        <h1>This is Employer Home</h1>
+    </div>
+</div>

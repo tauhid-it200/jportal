@@ -1,0 +1,72 @@
+﻿@model Hiring.ViewModels.ConfirmJobApplicationViewModel
+@{
+    ViewBag.Title = "ConfirmJobApplication";
+    Layout = "~/hiring/Views/Shared/_Layout.cshtml";
+}
+
+<div class="row">
+    <div class="col-md-offset-3 col-md-6">
+        <div class="panel panel-default">
+            <div class="panel-heading text-center">
+                <h3>Application Confirmation</h3>
+            </div>
+            <div class="panel-body">
+                @using (Html.BeginForm("", "", new { @class = "form-horizontal", role = "form" }))
+                {
+                    if (Session["message"] != null)
+                     {
+                         <p class="text-center">@Session["message"]</p>
+
+                         Session["message"] = null;
+                     }
+                    <div class="form-group">
+                        <div class="col-md-4 text-right">
+                            <label>Job Title</label>
+                        </div>
+                        <div class="col-md-8">
+                            <p>@Model.AppliedJob.Job.JobTitle</p>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="col-md-4 text-right">
+                            <label>Organization</label>
+                        </div>
+                        <div class="col-md-8">
+                            <p>@Model.Employer.OrganizationName</p>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="col-md-4 text-right">
+                            <label>Applied as</label>
+                        </div>
+                        <div class="col-md-8">
+                            <p>@Model.JobSeeker.Username</p>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="col-md-4 text-right">
+                            <label>Expected Salary</label>
+                        </div>
+                        <div class="col-md-8">
+                            <p>@Model.AppliedJob.ExpectedSalary</p>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="col-md-4 text-right">
+                            <label>Date of Application</label>
+                        </div>
+                        <div class="col-md-8">
+                            <p>@Model.AppliedJob.DateOfApplication</p>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="col-md-offset-4 col-md-8">
+                            <br />
+                            @Html.ActionLink("See More Jobs", "AllJobList", "JobSeeker", null, new {@class = "btn btn-primary"})
+                        </div>
+                    </div>
+                }
+            </div>
+        </div>
+    </div>
+</div>

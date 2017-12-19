@@ -1,0 +1,16 @@
+﻿
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/hiring/Views/Shared/_Layout.cshtml";
+}
+
+<div class="row">
+    <div class="col-md-offset-2 col-md-8 text-center">
+        <br/>
+        <h3>Login As</h3>
+        <br/>
+        @Html.ActionLink("Job Seeker", "JobSeekerLogin", "Login", null, new { @class = "btn btn-info" })
+        @Html.ActionLink("Employer", "EmployerLogin", "Login", null, new { @class = "btn btn-warning" })
+    </div>
+</div>
+

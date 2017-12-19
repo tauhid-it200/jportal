@@ -1,0 +1,60 @@
+﻿@model Hiring.ViewModels.JobDetailsViewModel
+@{
+    ViewBag.Title = "JobDetailsForJobSeeker";
+    Layout = "~/hiring/Views/Shared/_Layout.cshtml";
+}
+
+<div class="row">
+    <div class="col-md-offset-1 col-md-10">
+        <div class="panel panel-default">
+            <div class="panel-heading">
+
+            </div>
+            <div class="panel-body">
+                @if (Session["message"] != null)
+                {
+                    <p>@Session["message"]</p>
+                    Session["message"] = null;
+                }
+                <h4 class="">Job Title</h4>
+                <p>@Model.Job.JobTitle</p>
+                <h4>No. of Vacancy</h4>
+                <p>@Model.Job.Vacancy</p>
+                <h4 class="">Job Description</h4>
+                <p>@Model.Job.JobDescription</p>
+                <h4>Required Skills</h4>
+                <p>@Model.Job.RequiredSkills</p>
+                <h4 class="">Experience Required</h4>
+                <p>@Model.Job.RequiredExperience</p>
+                <h4>Education</h4>
+                <p>@Model.Job.EducationalQualifications</p>
+                <h4 class="">Location</h4>
+                <p>@Model.Job.JobLocation</p>
+                <h4>Salary</h4>
+                <p>@Model.Job.Salary</p>
+                <h4>Other</h4>
+                <p>@Model.Job.SpecialInfo</p>
+                <h4>Employer Information</h4>
+                <p>@Model.Employer.OrganizationName</p>
+                <p>@Model.Employer.OrganizationInfo</p>
+                <p>@Model.Employer.Address</p>
+                <br />
+                @*@if (Session["employerId"] != null)
+                    {
+                        @Html.ActionLink("Edit", "JobEditing", "Employer", new { @id = @Model.JobId }, new { @class = "col-md-offset-4 btn btn-primary" })
+                        @Html.ActionLink("Applicants", "ApplicantList", "Employer", new { @id = @Model.JobId }, new { @class = "btn btn-info" })
+                    }
+                    else
+                    {
+                        @Html.ActionLink("Apply", "JobApplication", "JobSeeker", new { @id = @Model.JobId }, new { @class = "col-md-offset-4 btn btn-primary" })
+                        @Html.ActionLink("Mark as Shortlisted", "ApplicantList", "Employer", new { @id = @Model.JobId }, new { @class = "btn btn-info" })
+                    }*@
+                @(Model.IsAlreadyApplied ? 
+                Html.ActionLink("Already Applied", "JobApplication", "JobSeeker", new {@id = @Model.Job.JobId}, new {@class = "col-md-offset-4 btn btn-success disabled"}) 
+                      : Html.ActionLink("Apply Now", "JobApplication", "JobSeeker", new {@id = @Model.Job.JobId}, new {@class = "col-md-offset-4 btn btn-primary"}))
+                <p><b>Email: </b>@Model.Employer.Email</p>
+                <p><b>Contact No: </b>@Model.Employer.ContactNumber</p>
+            </div>
+        </div>
+    </div>
+</div>

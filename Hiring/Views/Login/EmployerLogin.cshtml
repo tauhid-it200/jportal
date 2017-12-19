@@ -1,0 +1,49 @@
+﻿@model Hiring.Models.Employer
+@{
+    ViewBag.Title = "EmployerLogin";
+    Layout = "~/hiring/Views/Shared/_Layout.cshtml";
+}
+
+<div class="row">
+    <div class="col-md-offset-2 col-md-8">
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <h3 class="text-center">Login as Employer here</h3>
+            </div>
+            <div class="panel-body">
+                @if (Session["message"] != null)
+                {
+                    <p class="text-center">@Session["message"]</p>
+                    
+                    Session["message"] = null;
+                }
+                
+                @using (Html.BeginForm("EmployerLogin", "Login", FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
+                {
+                    @Html.AntiForgeryToken()
+                    <div class="form-group">
+                        <div class="col-md-4 text-right">
+                            @Html.LabelFor(m => m.Username, "Username", new { @class = "control-label" })
+                        </div>
+                        <div class="col-md-8">
+                            @Html.TextBoxFor(m => m.Username, new { @class = "form-control" })
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="col-md-4 text-right">
+                            @Html.LabelFor(m => m.Password, "Password", new { @class = "control-label" })
+                        </div>
+                        <div class="col-md-8">
+                            @Html.PasswordFor(m => m.Password, new { @class = "form-control" })
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="col-md-offset-4 col-md-8">
+                            <button type="submit" class="btn btn-default">Login</button>
+                        </div>
+                    </div>
+                }
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,68 @@
+﻿@model Hiring.ViewModels.JobApplicationViewModel
+@{
+    ViewBag.Title = "JobApplication";
+    Layout = "~/hiring/Views/Shared/_Layout.cshtml";
+}
+
+<div class="row">
+    <div class="col-md-offset-3 col-md-6">
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <h3>Apply Here</h3>
+            </div>
+            <div class="panel-body">
+                @if (Session["message"] != null)
+                {
+                    <p class="text-center">@Session["message"]</p>
+
+                    Session["message"] = null;
+                }
+
+                @using (Html.BeginForm("JobApplication", "JobSeeker", FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
+                {
+                    @Html.AntiForgeryToken()
+                    <div class="form-group">
+                        <div class="col-md-4 text-right">
+                            <label>Job Title</label>
+                        </div>
+                        <div class="col-md-8">
+                            <p>@Model.Job.JobTitle</p>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="col-md-4 text-right">
+                            <label>Organization</label>
+                        </div>
+                        <div class="col-md-8">
+                            <p>@Model.Employer.OrganizationName</p>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="col-md-4 text-right">
+                            <label>Apply as</label>
+                        </div>
+                        <div class="col-md-8">
+                            <p>@Model.JobSeeker.Username</p>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="col-md-4 text-right">
+                            @Html.LabelFor(m => m.ExpectedSalary, "Expected Salary", new { @class = "control-label" })
+                        </div>
+                        <div class="col-md-8">
+                            @Html.TextBoxFor(m => m.ExpectedSalary, new { @class = "form-control" })
+                        </div>
+                    </div>
+                    @Html.HiddenFor(m => m.Job.JobId)
+                    @Html.HiddenFor(m => m.JobSeeker.JobSeekerId)
+                    <div class="form-group">
+                        <div class="col-md-offset-4 col-md-8">
+                            <button type="submit" class="btn btn-default">Apply</button>
+                        </div>
+                    </div>
+                }
+            </div>
+        </div>
+    </div>
+</div>
+
