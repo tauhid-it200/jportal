@@ -15,6 +15,7 @@ namespace Hiring.Models
         public string Username { get; set; }
         public string OrganizationName { get; set; }
         public string OrganizationInfo { get; set; }
+        public string Address { get; set; }
         public virtual ICollection<Job> Jobs {get; set; }
     }
 }

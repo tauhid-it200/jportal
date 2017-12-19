@@ -1,4 +1,7 @@
-﻿namespace Hiring.Models
+﻿using System;
+using System.Collections.Generic;
+
+namespace Hiring.Models
 {
     public class Job
     {
@@ -12,9 +15,11 @@
         public string JobLocation { get; set; }
         public string Salary { get; set; }
         public string SpecialInfo { get; set; }
-        public string PublicationDate { get; set; }
-        public string Deadline { get; set; }
+        public DateTime DateOfPublication { get; set; }
+        public DateTime DateLastModified { get; set; }
+        public DateTime Deadline { get; set; }
         public int EmployerId { get; set; }
         public virtual Employer Employer { get; set; }
+        public virtual ICollection<JobSeeker> Applicants { get; set; }
     }
 }

@@ -1,22 +1,50 @@
-﻿@using Microsoft.AspNet.Identity
-@if (Request.IsAuthenticated)
+﻿@using Hiring.Models
+@using Hiring.Repositories
+@using Microsoft.AspNet.Identity
+@if (Session["employerId"] != null)
 {
-    using (Html.BeginForm("LogOff", "Account", FormMethod.Post, new { id = "logoutForm", @class = "navbar-right" }))
+    var repository = new Repository();
+    var employer = repository.GetEmployerById((int)Session["employerId"]);
+    using (Html.BeginForm("Logout", "Login", FormMethod.Post, new { id = "logoutForm", @class = "navbar-right" }))
     {
     @Html.AntiForgeryToken()
 
     <ul class="nav navbar-nav navbar-right">
         <li>
-            @Html.ActionLink("Hello " + User.Identity.GetUserName() + "!", "Manage", "Account", routeValues: null, htmlAttributes: new { title = "Manage" })
+            @Html.ActionLink("Hello " + employer.Username + "!", "Manage", "Account", routeValues: null, htmlAttributes: null)
         </li>
-        <li><a href="javascript:document.getElementById('logoutForm').submit()">Log off</a></li>
+        <li>
+            @Html.ActionLink("Logout", "Logout", "Login", routeValues: null, htmlAttributes: null)
+        </li>
     </ul>
+    }
+}
+else if (Session["jobSeekerId"] != null)
+{
+    var repository = new Repository();
+    var jobSeeker = repository.GetJobSeekerById((int) Session["jobSeekerId"]);
+    using (Html.BeginForm("Logout", "Login", FormMethod.Post, new {id = "logoutForm", @class = "navbar-right"}))
+    {
+        @Html.AntiForgeryToken()
+
+        <ul class="nav navbar-nav navbar-right">
+            <li>
+                @Html.ActionLink("Hello " + jobSeeker.Username + "!", "Manage", "Account", routeValues: null, htmlAttributes: null)
+            </li>
+            <li>
+                @Html.ActionLink("Logout", "Logout", "Login", routeValues: null, htmlAttributes: null)
+            </li>
+        </ul>
     }
 }
 else
 {
     <ul class="nav navbar-nav navbar-right">
-        <li>@Html.ActionLink("Register", "Register", "Account", routeValues: null, htmlAttributes: new { id = "registerLink" })</li>
-        <li>@Html.ActionLink("Log in", "Login", "Account", routeValues: null, htmlAttributes: new { id = "loginLink" })</li>
+        <li>
+            @Html.ActionLink("Register", "Index", "Register", routeValues: null, htmlAttributes: new { id = "registerLink" })
+        </li>
+        <li>
+            @Html.ActionLink("Log in", "Login", "Login", routeValues: null, htmlAttributes: new { id = "loginLink" })
+        </li>
     </ul>
 }

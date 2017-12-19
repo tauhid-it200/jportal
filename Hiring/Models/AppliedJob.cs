@@ -10,6 +10,9 @@ namespace Hiring.Models
         public int AppliedJobId { get; set; }
         public int JobId { get; set; }
         public virtual Job Job { get; set; }
-        public virtual ICollection<JobSeeker> Applicants { get; set; }
+        public int JobSeekerId { get; set; }
+        public virtual JobSeeker JobSeeker { get; set; }
+        public int ExpectedSalary { get; set; }
+        public DateTime DateOfApplication { get; set; }
     }
 }

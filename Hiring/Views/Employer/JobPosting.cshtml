@@ -11,19 +11,24 @@
                 <h3 class="text-center">Post a job here</h3>
             </div>
             <div class="panel-body">
+                @if (Session["message"] != null)
+                {
+                    <p>@Session["message"]</p>
+                    Session["message"] = null;
+                }
                 @using (Html.BeginForm("JobPosting", "Employer", FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
                 {
                     <div class="form-group">
                         <div class="col-md-4 text-right">
-                            @Html.LabelFor(m => m.JobTitle, "Job Title")
+                            @Html.LabelFor(m => m.JobTitle, "Job Title", new { @class = "control-label" })
                         </div>
                         <div class="col-md-8">
-                            @Html.TextBoxFor(m => m.JobTitle, new {@class = "form-control"})
+                            @Html.TextBoxFor(m => m.JobTitle, new { @class = "form-control" })
                         </div>
                     </div>
                     <div class="form-group">
                         <div class="col-md-4 text-right">
-                            @Html.LabelFor(m => m.Vacancy, "No. of Vacancy")
+                            @Html.LabelFor(m => m.Vacancy, "No. of Vacancy", new { @class = "control-label" })
                         </div>
                         <div class="col-md-8">
                             @Html.TextBoxFor(m => m.Vacancy, new { @class = "form-control" })
@@ -31,7 +36,7 @@
                     </div>
                     <div class="form-group">
                         <div class="col-md-4 text-right">
-                            @Html.LabelFor(m => m.JobDescription, "Job Description")
+                            @Html.LabelFor(m => m.JobDescription, "Job Description", new { @class = "control-label" })
                         </div>
                         <div class="col-md-8">
                             @Html.TextAreaFor(m => m.JobDescription, new { @class = "form-control" })
@@ -39,7 +44,7 @@
                     </div>
                     <div class="form-group">
                         <div class="col-md-4 text-right">
-                            @Html.LabelFor(m => m.RequiredSkills, "Required Skills")
+                            @Html.LabelFor(m => m.RequiredSkills, "Required Skills", new { @class = "control-label" })
                         </div>
                         <div class="col-md-8">
                             @Html.TextAreaFor(m => m.RequiredSkills, new { @class = "form-control" })
@@ -47,7 +52,7 @@
                     </div>
                     <div class="form-group">
                         <div class="col-md-4 text-right">
-                            @Html.LabelFor(m => m.RequiredExperience, "Experience Required")
+                            @Html.LabelFor(m => m.RequiredExperience, "Experience Required", new { @class = "control-label" })
                         </div>
                         <div class="col-md-8">
                             @Html.TextBoxFor(m => m.RequiredExperience, new { @class = "form-control" })
@@ -55,7 +60,7 @@
                     </div>
                     <div class="form-group">
                         <div class="col-md-4 text-right">
-                            @Html.LabelFor(m => m.EducationalQualifications, "Educational Qualifications")
+                            @Html.LabelFor(m => m.EducationalQualifications, "Educational Qualifications", new { @class = "control-label" })
                         </div>
                         <div class="col-md-8">
                             @Html.TextAreaFor(m => m.EducationalQualifications, new { @class = "form-control" })
@@ -63,7 +68,7 @@
                     </div>
                     <div class="form-group">
                         <div class="col-md-4 text-right">
-                            @Html.LabelFor(m => m.JobLocation, "Job Location")
+                            @Html.LabelFor(m => m.JobLocation, "Job Location", new { @class = "control-label" })
                         </div>
                         <div class="col-md-8">
                             @Html.TextBoxFor(m => m.JobLocation, new { @class = "form-control" })
@@ -71,15 +76,28 @@
                     </div>
                     <div class="form-group">
                         <div class="col-md-4 text-right">
-                            @Html.LabelFor(m => m.Salary, "Salary")
+                            @Html.LabelFor(m => m.Salary, "Salary", new { @class = "control-label" })
                         </div>
                         <div class="col-md-8">
                             @Html.TextBoxFor(m => m.Salary, new { @class = "form-control" })
                         </div>
                     </div>
+                    @*<div class="form-group">
+                        <div class="col-md-4 text-right">
+                            <label for="jobType" class="control-label">Job Type</label>
+                        </div>
+                        <div class="col-md-8">
+                            <select id="jobType">
+                                <option selected="">Select Job Type</option>
+                                <option value="1">Full-Time</option>
+                                <option value="2">Part-Time</option>
+                                <option value="3">Contractual</option>
+                            </select>
+                        </div>
+                    </div>*@
                     <div class="form-group">
                         <div class="col-md-4 text-right">
-                            @Html.LabelFor(m => m.SpecialInfo, "Special Info")
+                            @Html.LabelFor(m => m.SpecialInfo, "Special Info", new { @class = "control-label" })
                         </div>
                         <div class="col-md-8">
                             @Html.TextAreaFor(m => m.SpecialInfo, new { @class = "form-control" })
@@ -87,20 +105,23 @@
                     </div>
                     <div class="form-group">
                         <div class="col-md-4 text-right">
-                            @Html.LabelFor(m => m.Deadline, "Deadline")
+                            @Html.LabelFor(m => m.Deadline, "Deadline", new { @class = "control-label" })
                         </div>
                         <div class="col-md-8">
-                            @Html.TextBoxFor(m => m.Deadline, new { @class = "form-control" })
+                            @Html.TextBoxFor(m => m.Deadline, new { @class = "form-control", type = "date" })
                         </div>
                     </div>
-                    @*@Html.HiddenFor(m => m.EmployerId, new { @value = ""})*@
-                    @*@Html.HiddenFor(m => m.PublicationDate, new { @value = ""})*@
+                    @Html.HiddenFor(m => m.EmployerId, new { @Value = Session["employerId"] })
+                    @Html.HiddenFor(m => m.DateOfPublication, new { @Value = DateTime.Now })
+                    @Html.HiddenFor(m => m.DateLastModified, new { @Value = DateTime.Now })
                     @Html.AntiForgeryToken()
-                    
-                    <button type="submit" class="col-md-offset-4 btn btn-success">Post</button>
+                    <div class="form-group">
+                        <div class="col-md-offset-4 col-md-8">
+                            <button type="submit" class="btn btn-success">Post</button>
+                        </div>
+                    </div>
                 }
             </div>
         </div>
     </div>
 </div>
-

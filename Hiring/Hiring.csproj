@@ -161,6 +161,9 @@
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\EmployerController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\JobSeekerController.cs" />
+    <Compile Include="Controllers\LoginController.cs" />
+    <Compile Include="Controllers\RegisterController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -176,7 +179,23 @@
     <Compile Include="Migrations\201711130452427_NewPropertyAddedInJob.Designer.cs">
       <DependentUpon>201711130452427_NewPropertyAddedInJob.cs</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\Configuration.cs" />
+    <Compile Include="Migrations\201711210936453_TablesReformed.cs" />
+    <Compile Include="Migrations\201711210936453_TablesReformed.Designer.cs">
+      <DependentUpon>201711210936453_TablesReformed.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201712190626570_AddedNewPropertiesInJobAndApppliedJob.cs" />
+    <Compile Include="Migrations\201712190626570_AddedNewPropertiesInJobAndApppliedJob.Designer.cs">
+      <DependentUpon>201712190626570_AddedNewPropertiesInJobAndApppliedJob.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201712191813167_AddressAddedInEmployerModel.cs" />
+    <Compile Include="Migrations\201712191813167_AddressAddedInEmployerModel.Designer.cs">
+      <DependentUpon>201712191813167_AddressAddedInEmployerModel.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201712191943376_JobTypeRemovedFromJob.cs" />
+    <Compile Include="Migrations\201712191943376_JobTypeRemovedFromJob.Designer.cs">
+      <DependentUpon>201712191943376_JobTypeRemovedFromJob.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\AppliedJob.cs" />
     <Compile Include="Models\BookmarkedJob.cs" />
@@ -185,7 +204,13 @@
     <Compile Include="Models\Job.cs" />
     <Compile Include="Models\JobSeeker.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Repositories\Repository.cs" />
     <Compile Include="Startup.cs" />
+    <Compile Include="ViewModels\AppliedJobViewModel.cs" />
+    <Compile Include="ViewModels\ConfirmJobApplicationViewModel.cs" />
+    <Compile Include="ViewModels\JobApplicationViewModel.cs" />
+    <Compile Include="ViewModels\JobDetailsViewModel.cs" />
+    <Compile Include="ViewModels\JobPostingViewModel.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\bootstrap.css" />
@@ -235,6 +260,24 @@
     <Content Include="Views\Shared\_LoginPartial.cshtml" />
     <Content Include="Views\Employer\Index.cshtml" />
     <Content Include="Views\Employer\JobPosting.cshtml" />
+    <Content Include="Views\Shared\Login.cshtml" />
+    <Content Include="Views\Login\Index.cshtml" />
+    <Content Include="Views\Login\JobSeekerLogin.cshtml" />
+    <Content Include="Views\Login\EmployerLogin.cshtml" />
+    <Content Include="Views\Register\Index.cshtml" />
+    <Content Include="Views\Register\JobSeekerRegister.cshtml" />
+    <Content Include="Views\Register\EmployerRegister.cshtml" />
+    <Content Include="Views\Employer\Home.cshtml" />
+    <Content Include="Views\Login\Login.cshtml" />
+    <Content Include="Views\Employer\EmployerJobList.cshtml" />
+    <Content Include="Views\Employer\JobDetailsForEmployer.cshtml" />
+    <Content Include="Views\Employer\JobEditing.cshtml" />
+    <Content Include="Views\JobSeeker\Home.cshtml" />
+    <Content Include="Views\JobSeeker\JobApplication.cshtml" />
+    <Content Include="Views\JobSeeker\AllJobList.cshtml" />
+    <Content Include="Views\JobSeeker\JobDetailsForJobSeeker.cshtml" />
+    <Content Include="Views\JobSeeker\ConfirmJobApplication.cshtml" />
+    <Content Include="Views\JobSeeker\AppliedJobList.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -255,6 +298,18 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201711130452427_NewPropertyAddedInJob.resx">
       <DependentUpon>201711130452427_NewPropertyAddedInJob.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201711210936453_TablesReformed.resx">
+      <DependentUpon>201711210936453_TablesReformed.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201712190626570_AddedNewPropertiesInJobAndApppliedJob.resx">
+      <DependentUpon>201712190626570_AddedNewPropertiesInJobAndApppliedJob.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201712191813167_AddressAddedInEmployerModel.resx">
+      <DependentUpon>201712191813167_AddressAddedInEmployerModel.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201712191943376_JobTypeRemovedFromJob.resx">
+      <DependentUpon>201712191943376_JobTypeRemovedFromJob.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

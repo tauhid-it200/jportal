@@ -20,24 +20,35 @@
                 @Html.ActionLink("Hiring", "Index", "Home", null, new { @class = "navbar-brand" })
             </div>
             <div class="navbar-collapse collapse">
-                @if (@Request.IsAuthenticated)
+                @if (Session["employerId"] != null)
                 {
                     <ul class="nav navbar-nav">
-                        <li>@Html.ActionLink("Home", "Index", "Home")</li>
-                        <li>@Html.ActionLink("My Account", "Contact", "Home")</li>
-                        <li>@Html.ActionLink("Post A Job", "JobPosting", "Employer")</li>
+                        <li>@Html.ActionLink("Home", "Home", "Employer", null, null)</li>
+                        <li>@Html.ActionLink("My Account", "Home", "Employer", null, null)</li>
+                        <li>@Html.ActionLink("Post New Job", "JobPosting", "Employer", null, null)</li>
+                        <li>@Html.ActionLink("Posted Jobs", "EmployerJobList", "Employer", new { @id = (int)Session["employerId"] }, null)</li>
                         <li>@Html.ActionLink("About", "About", "Home")</li>
                     </ul>
-  
+
+                }
+                else if (Session["jobSeekerId"] != null)
+                {
+                    <ul class="nav navbar-nav">
+                        <li>@Html.ActionLink("Home", "Home", "JobSeeker", null, null)</li>
+                        <li>@Html.ActionLink("My Account", "Home", "JobSeeker", null, null)</li>
+                        <li>@Html.ActionLink("Find Jobs", "AllJobList", "JobSeeker", null, null)</li>
+                        <li>@Html.ActionLink("Applied Jobs", "AppliedJobList", "JobSeeker", new { @id = (int)Session["jobSeekerId"] }, null)</li>
+                        <li>@Html.ActionLink("Bookmarked Jobs", "BookmarkedJobList", "JobSeeker", new { @id = (int)Session["jobSeekerId"] }, null)</li>
+                        <li>@Html.ActionLink("About", "About", "Home")</li>
+                    </ul>
                 }
                 else
                 {
                     <ul class="nav navbar-nav">
-                        <li>@Html.ActionLink("Home", "Index", "Home")</li>
-                        <li>@Html.ActionLink("Find Jobs", "Contact", "Home")</li>
-                        <li>@Html.ActionLink("About", "About", "Home")</li>
+                        <li>@Html.ActionLink("Home", "Index", "Home", null, null)</li>
+                        <li>@Html.ActionLink("Find Jobs", "Contact", "Home", null, null)</li>
+                        <li>@Html.ActionLink("About", "About", "Home", null, null)</li>
                     </ul>
-  
                 }
                 @Html.Partial("_LoginPartial")
             </div>
@@ -45,10 +56,7 @@
     </div>
     <div class="container body-content">
         @RenderBody()
-        <hr />
-        <footer>
-            <p>&copy; @DateTime.Now.Year - My ASP.NET Application</p>
-        </footer>
+        <footer></footer>
     </div>
 
     @Scripts.Render("~/bundles/jquery")
