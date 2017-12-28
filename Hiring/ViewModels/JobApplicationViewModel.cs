@@ -9,8 +9,10 @@ namespace Hiring.ViewModels
     public class JobApplicationViewModel
     {
         public Job Job { get; set; }
-        public Employer Employer { get; set; }
-        public JobSeeker JobSeeker { get; set; }
+        public int EmployerId { get; set; }
+        public string OrganizationName { get; set; }
+        public int JobSeekerId { get; set; }
+        public string JobSeekerUsername { get; set; }
         public int ExpectedSalary { get; set; }
     }
 }

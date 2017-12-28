@@ -1,0 +1,56 @@
+﻿@model List<Hiring.Models.AppliedJob>
+@{
+    ViewBag.Title = "ApplicantList";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="row">
+    <div class="col-md-offset-1 col-md-10">
+        <div class="panel panel-default">
+            <div class="panel-heading text-center">
+                <h3>List of Applicants</h3>
+            </div>
+            <div class="panel-body">
+                @if (Model.Count == 0)
+                {
+                    <p>No applicant to show</p>
+                }
+                else
+                {
+                    var i = 0;
+                    <table class="table table-bordered">
+                        <tr>
+                            <th>Serial No.</th>
+                            <th>Name</th>
+                            <th>Email</th>
+                            <th>Phone Number</th>
+                            <th>Expected Salary</th>
+                            <th>Applied On</th>
+                            <th></th>
+                        </tr>
+                        @foreach (var appliedJob in Model)
+                        {
+
+                            i++;
+                            <tr>
+                                <td class="col-md-1">@i</td>
+                                <td class="col-md-2">@appliedJob.JobSeeker.Name</td>
+                                <td class="col-md-2">@appliedJob.JobSeeker.Email</td>
+                                <td class="col-md-2">@appliedJob.JobSeeker.PhoneNumber</td>
+                                <td class="col-md-2">@appliedJob.ExpectedSalary</td>
+                                <td class="col-md-2">@appliedJob.DateOfApplication</td>
+                                <td class="col-md-3">
+                                    @Html.ActionLink("Details", "ApplicantDetails", "Employer", new { @id = appliedJob.AppliedJobId }, new { @class = "btn btn-info" })
+                                </td>
+                            </tr>
+                        }
+                    </table>
+                }
+                <div class="col-md-offset-5">
+                    <br />
+                    @Html.ActionLink("Go Back", "EmployerJobList", "Employer", new { @id = (int)Session["employerId"] }, new { @class = "btn btn-default" })
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

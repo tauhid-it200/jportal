@@ -1,8 +1,20 @@
 ﻿
 @{
     ViewBag.Title = "Home";
-    Layout = "~/hiring/Views/Shared/_Layout.cshtml";
+    Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h2>This is JobSeeker Home</h2>
-
+<div class="container">
+    <div class="row">
+        <div class="col-md-12 text-center">
+            @if (Session["message"] != null)
+            {
+                <p>@Session["message"]</p>
+                Session["message"] = null;
+            }
+            <br />
+            <h1>WELCOME</h1>
+            <img src="../../Content/img/recruitment-consultancy-alton3.jpg" alt="employer_image" style="width: 100%" />
+        </div>
+    </div>
+</div>

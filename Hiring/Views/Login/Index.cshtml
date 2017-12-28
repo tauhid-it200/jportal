@@ -1,7 +1,7 @@
 ﻿
 @{
     ViewBag.Title = "Index";
-    Layout = "~/hiring/Views/Shared/_Layout.cshtml";
+    Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
 <div class="row">
@@ -10,7 +10,7 @@
         <h3>Login As</h3>
         <br/>
         @Html.ActionLink("Job Seeker", "JobSeekerLogin", "Login", null, new { @class = "btn btn-info" })
-        @Html.ActionLink("Employer", "EmployerLogin", "Login", null, new { @class = "btn btn-warning" })
+        @Html.ActionLink("Employer", "EmployerLogin", "Login", null, new { @class = "btn btn-primary" })
     </div>
 </div>
 

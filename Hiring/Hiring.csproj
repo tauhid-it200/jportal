@@ -195,6 +195,30 @@
     <Compile Include="Migrations\201712191943376_JobTypeRemovedFromJob.Designer.cs">
       <DependentUpon>201712191943376_JobTypeRemovedFromJob.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201712270503595_JobSeekerValidationAdded.cs" />
+    <Compile Include="Migrations\201712270503595_JobSeekerValidationAdded.Designer.cs">
+      <DependentUpon>201712270503595_JobSeekerValidationAdded.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201712270535324_JobSeekerUpdateValidationMessages.cs" />
+    <Compile Include="Migrations\201712270535324_JobSeekerUpdateValidationMessages.Designer.cs">
+      <DependentUpon>201712270535324_JobSeekerUpdateValidationMessages.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201712270558302_EmployerUpdateValidationMessages.cs" />
+    <Compile Include="Migrations\201712270558302_EmployerUpdateValidationMessages.Designer.cs">
+      <DependentUpon>201712270558302_EmployerUpdateValidationMessages.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201712270605531_EmployerUpdateValidationMessageForOrganization.cs" />
+    <Compile Include="Migrations\201712270605531_EmployerUpdateValidationMessageForOrganization.Designer.cs">
+      <DependentUpon>201712270605531_EmployerUpdateValidationMessageForOrganization.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201712270631011_UpdateValidationForPhoneAndContactNumber.cs" />
+    <Compile Include="Migrations\201712270631011_UpdateValidationForPhoneAndContactNumber.Designer.cs">
+      <DependentUpon>201712270631011_UpdateValidationForPhoneAndContactNumber.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201712270644254_UpdateDataTypeOfPhoneAndContactNumber.cs" />
+    <Compile Include="Migrations\201712270644254_UpdateDataTypeOfPhoneAndContactNumber.Designer.cs">
+      <DependentUpon>201712270644254_UpdateDataTypeOfPhoneAndContactNumber.cs</DependentUpon>
+    </Compile>
     <Compile Include="Models\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\AppliedJob.cs" />
@@ -206,11 +230,15 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Repositories\Repository.cs" />
     <Compile Include="Startup.cs" />
+    <Compile Include="ViewModels\AllJobListViewModel.cs" />
+    <Compile Include="ViewModels\ApplicantListViewModel.cs" />
+    <Compile Include="ViewModels\ApplicantViewModel.cs" />
     <Compile Include="ViewModels\AppliedJobViewModel.cs" />
     <Compile Include="ViewModels\ConfirmJobApplicationViewModel.cs" />
     <Compile Include="ViewModels\JobApplicationViewModel.cs" />
     <Compile Include="ViewModels\JobDetailsViewModel.cs" />
     <Compile Include="ViewModels\JobPostingViewModel.cs" />
+    <Compile Include="ViewModels\UserLoginViewModel.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\bootstrap.css" />
@@ -278,6 +306,14 @@
     <Content Include="Views\JobSeeker\JobDetailsForJobSeeker.cshtml" />
     <Content Include="Views\JobSeeker\ConfirmJobApplication.cshtml" />
     <Content Include="Views\JobSeeker\AppliedJobList.cshtml" />
+    <Content Include="Views\Employer\ApplicantList.cshtml" />
+    <Content Include="Views\Employer\ApplicantDetails.cshtml" />
+    <Content Include="Views\JobSeeker\JobSearching.cshtml" />
+    <Content Include="Views\JobSeeker\BookmarkedJobList.cshtml" />
+    <Content Include="Views\JobSeeker\JobSeekerProfile.cshtml" />
+    <Content Include="Views\JobSeeker\JobSeekerPasswordChange.cshtml" />
+    <Content Include="Views\Employer\EmployerPasswordChange.cshtml" />
+    <Content Include="Views\Employer\EmployerProfile.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -310,6 +346,24 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201712191943376_JobTypeRemovedFromJob.resx">
       <DependentUpon>201712191943376_JobTypeRemovedFromJob.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201712270503595_JobSeekerValidationAdded.resx">
+      <DependentUpon>201712270503595_JobSeekerValidationAdded.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201712270535324_JobSeekerUpdateValidationMessages.resx">
+      <DependentUpon>201712270535324_JobSeekerUpdateValidationMessages.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201712270558302_EmployerUpdateValidationMessages.resx">
+      <DependentUpon>201712270558302_EmployerUpdateValidationMessages.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201712270605531_EmployerUpdateValidationMessageForOrganization.resx">
+      <DependentUpon>201712270605531_EmployerUpdateValidationMessageForOrganization.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201712270631011_UpdateValidationForPhoneAndContactNumber.resx">
+      <DependentUpon>201712270631011_UpdateValidationForPhoneAndContactNumber.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201712270644254_UpdateDataTypeOfPhoneAndContactNumber.resx">
+      <DependentUpon>201712270644254_UpdateDataTypeOfPhoneAndContactNumber.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

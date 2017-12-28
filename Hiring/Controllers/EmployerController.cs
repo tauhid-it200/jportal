@@ -5,6 +5,7 @@ using System.Web;
 using System.Web.Mvc;
 using Hiring.Models;
 using Hiring.Repositories;
+using Hiring.ViewModels;
 
 namespace Hiring.Controllers
 {
@@ -103,10 +104,27 @@ namespace Hiring.Controllers
         public ActionResult JobDetailsForEmployer(int id)
         {
             var job = Repository.GetJobById(id);
-
             return View(job);
         }
         public ActionResult ApplicantList(int id)
+        {
+            var appliedJobs = Repository.GetAppliedJobListByJobId(id);
+
+            return View(appliedJobs);
+        }
+        public ActionResult ApplicantDetails(int id)
+        {
+            var appliedJob = Repository.GetAppliedJobById(id);
+
+            return View(appliedJob);
+        }
+
+        public ActionResult EmployerPasswordChange()
+        {
+            return View();
+        }
+
+        public ActionResult EmployerProfile()
         {
             return View();
         }

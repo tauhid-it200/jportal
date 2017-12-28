@@ -5,37 +5,33 @@
 {
     var repository = new Repository();
     var employer = repository.GetEmployerById((int)Session["employerId"]);
-    using (Html.BeginForm("Logout", "Login", FormMethod.Post, new { id = "logoutForm", @class = "navbar-right" }))
-    {
-    @Html.AntiForgeryToken()
-
-    <ul class="nav navbar-nav navbar-right">
-        <li>
-            @Html.ActionLink("Hello " + employer.Username + "!", "Manage", "Account", routeValues: null, htmlAttributes: null)
-        </li>
-        <li>
-            @Html.ActionLink("Logout", "Logout", "Login", routeValues: null, htmlAttributes: null)
-        </li>
-    </ul>
-    }
+    <div class="dropdown pull-right">
+        <button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown" style="margin-top: 4px">
+            @employer.Username
+            <span class="caret"></span>
+        </button>
+        <ul class="dropdown-menu">
+            <li>@Html.ActionLink("Profile", "EmployerProfile", "Employer", routeValues: null, htmlAttributes: null)</li>
+            <li>@Html.ActionLink("Change Password", "EmployerPasswordChange", "Employer", routeValues: null, htmlAttributes: null)</li>
+            <li>@Html.ActionLink("Logout", "Logout", "Login", routeValues: null, htmlAttributes: null)</li>
+        </ul>
+    </div>
 }
 else if (Session["jobSeekerId"] != null)
 {
     var repository = new Repository();
-    var jobSeeker = repository.GetJobSeekerById((int) Session["jobSeekerId"]);
-    using (Html.BeginForm("Logout", "Login", FormMethod.Post, new {id = "logoutForm", @class = "navbar-right"}))
-    {
-        @Html.AntiForgeryToken()
-
-        <ul class="nav navbar-nav navbar-right">
-            <li>
-                @Html.ActionLink("Hello " + jobSeeker.Username + "!", "Manage", "Account", routeValues: null, htmlAttributes: null)
-            </li>
-            <li>
-                @Html.ActionLink("Logout", "Logout", "Login", routeValues: null, htmlAttributes: null)
-            </li>
+    var jobSeeker = repository.GetJobSeekerById((int)Session["jobSeekerId"]);
+    <div class="dropdown pull-right">
+        <button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown" style="margin-top: 4px">
+            @jobSeeker.Username
+            <span class="caret"></span>
+        </button>
+        <ul class="dropdown-menu">
+            <li>@Html.ActionLink("Profile", "JobSeekerProfile", "JobSeeker", routeValues: null, htmlAttributes: null)</li>
+            <li>@Html.ActionLink("Change Password", "JobSeekerPasswordChange", "JobSeeker", routeValues: null, htmlAttributes: null)</li>
+            <li>@Html.ActionLink("Logout", "Logout", "Login", routeValues: null, htmlAttributes: null)</li>
         </ul>
-    }
+    </div>
 }
 else
 {

@@ -1,7 +1,7 @@
 ﻿@model Hiring.Models.Job
 @{
     ViewBag.Title = "JobDetailsForEmployer";
-    Layout = "~/hiring/Views/Shared/_Layout.cshtml";
+    Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
 <div class="row">
@@ -41,18 +41,11 @@
                 <h4>Last Modified on</h4>
                 <p>@Model.DateLastModified</p>
                 <br />
-                @*@if (Session["employerId"] != null)
-                {
-                    @Html.ActionLink("Edit", "JobEditing", "Employer", new { @id = @Model.JobId }, new { @class = "col-md-offset-4 btn btn-primary" })
-                    @Html.ActionLink("Applicants", "ApplicantList", "Employer", new { @id = @Model.JobId }, new { @class = "btn btn-info" })
-                }
-                else
-                {
-                    @Html.ActionLink("Apply", "JobApplication", "JobSeeker", new { @id = @Model.JobId }, new { @class = "col-md-offset-4 btn btn-primary" })
-                    @Html.ActionLink("Mark as Shortlisted", "ApplicantList", "Employer", new { @id = @Model.JobId }, new { @class = "btn btn-info" })
-                }*@
-                @Html.ActionLink("Edit", "JobEditing", "Employer", new { @id = @Model.JobId }, new { @class = "col-md-offset-4 btn btn-primary" })
-                @Html.ActionLink("Applicants", "ApplicantList", "Employer", new { @id = @Model.JobId }, new { @class = "btn btn-info" })
+                <div class="col-md-offset-5">
+                    @Html.ActionLink("Edit", "JobEditing", "Employer", new { @id = @Model.JobId }, new { @class = "btn btn-primary" })
+                    @*@Html.ActionLink("Applicants", "ApplicantList", "Employer", new { @id = @Model.JobId }, new { @class = "btn btn-info" })*@
+                    @Html.ActionLink("Go Back", "EmployerJobList", "Employer", new { @id = (int)Session["employerId"] }, new { @class = "btn btn-default" })
+                </div>
             </div>
         </div>
     </div>

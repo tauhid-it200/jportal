@@ -11,5 +11,6 @@ namespace Hiring.ViewModels
         public Job Job { get; set; }
         public Employer Employer { get; set; }
         public bool IsAlreadyApplied { get; set; }
+        public bool IsAlreadyBookmarked { get; set; }
     }
 }

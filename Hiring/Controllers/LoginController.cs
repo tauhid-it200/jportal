@@ -5,6 +5,7 @@ using System.Web;
 using System.Web.Mvc;
 using Hiring.Models;
 using Hiring.Repositories;
+using Hiring.ViewModels;
 
 namespace Hiring.Controllers
 {
@@ -29,7 +30,7 @@ namespace Hiring.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult JobSeekerLogin(JobSeeker jobSeeker)
+        public ActionResult JobSeekerLogin(UserLoginViewModel jobSeeker)
         {
             if (ModelState.IsValid)
             {
@@ -59,7 +60,7 @@ namespace Hiring.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult EmployerLogin( Employer employer)
+        public ActionResult EmployerLogin( UserLoginViewModel employer)
         {
             if (ModelState.IsValid)
             {

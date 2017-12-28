@@ -23,8 +23,7 @@
                 @if (Session["employerId"] != null)
                 {
                     <ul class="nav navbar-nav">
-                        <li>@Html.ActionLink("Home", "Home", "Employer", null, null)</li>
-                        <li>@Html.ActionLink("My Account", "Home", "Employer", null, null)</li>
+                        <li>@Html.ActionLink("Home", "Home", "Employer", new { @id = (int)Session["employerId"] }, null)</li>
                         <li>@Html.ActionLink("Post New Job", "JobPosting", "Employer", null, null)</li>
                         <li>@Html.ActionLink("Posted Jobs", "EmployerJobList", "Employer", new { @id = (int)Session["employerId"] }, null)</li>
                         <li>@Html.ActionLink("About", "About", "Home")</li>
@@ -34,8 +33,7 @@
                 else if (Session["jobSeekerId"] != null)
                 {
                     <ul class="nav navbar-nav">
-                        <li>@Html.ActionLink("Home", "Home", "JobSeeker", null, null)</li>
-                        <li>@Html.ActionLink("My Account", "Home", "JobSeeker", null, null)</li>
+                        <li>@Html.ActionLink("Home", "Home", "JobSeeker", new { @id = (int)Session["jobSeekerId"] }, null)</li>
                         <li>@Html.ActionLink("Find Jobs", "AllJobList", "JobSeeker", null, null)</li>
                         <li>@Html.ActionLink("Applied Jobs", "AppliedJobList", "JobSeeker", new { @id = (int)Session["jobSeekerId"] }, null)</li>
                         <li>@Html.ActionLink("Bookmarked Jobs", "BookmarkedJobList", "JobSeeker", new { @id = (int)Session["jobSeekerId"] }, null)</li>
@@ -46,7 +44,7 @@
                 {
                     <ul class="nav navbar-nav">
                         <li>@Html.ActionLink("Home", "Index", "Home", null, null)</li>
-                        <li>@Html.ActionLink("Find Jobs", "Contact", "Home", null, null)</li>
+                        <li>@Html.ActionLink("Find Jobs", "AllJobList", "JobSeeker", null, null)</li>
                         <li>@Html.ActionLink("About", "About", "Home", null, null)</li>
                     </ul>
                 }

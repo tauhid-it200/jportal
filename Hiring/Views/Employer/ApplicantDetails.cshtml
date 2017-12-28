@@ -1,0 +1,90 @@
+﻿@model Hiring.Models.AppliedJob
+@{
+    ViewBag.Title = "ApplicantDetails";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="row">
+    <div class="col-md-offset-3 col-md-6">
+        <div class="panel panel-default">
+            <div class="panel-heading text-center">
+                <h3>Applicant Information</h3>
+            </div>
+            <div class="panel-body">
+                @using (Html.BeginForm("", "", new { @class = "form-horizontal", role = "form" }))
+                {
+                    if (Session["message"] != null)
+                    {
+                        <p class="text-center">@Session["message"]</p>
+
+                        Session["message"] = null;
+                    }
+                    <div class="form-group">
+                        <div class="col-md-4 text-right">
+                            <label>Name</label>
+                        </div>
+                        <div class="col-md-8">
+                            <p>@Model.JobSeeker.Name</p>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="col-md-4 text-right">
+                            <label>Email</label>
+                        </div>
+                        <div class="col-md-8">
+                            <p>@Model.JobSeeker.Email</p>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="col-md-4 text-right">
+                            <label>Phone Number</label>
+                        </div>
+                        <div class="col-md-8">
+                            <p>@Model.JobSeeker.PhoneNumber</p>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="col-md-4 text-right">
+                            <label>Address</label>
+                        </div>
+                        <div class="col-md-8">
+                            <p>@Model.JobSeeker.Address</p>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="col-md-4 text-right">
+                            <label>Skills</label>
+                        </div>
+                        <div class="col-md-8">
+                            <p>@Model.JobSeeker.Skills</p>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="col-md-4 text-right">
+                            <label>Expected Salary</label>
+                        </div>
+                        <div class="col-md-8">
+                            <p>@Model.ExpectedSalary</p>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="col-md-4 text-right">
+                            <label>Date of Application</label>
+                        </div>
+                        <div class="col-md-8">
+                            <p>@Model.DateOfApplication</p>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="col-md-offset-4 col-md-8">
+                            <br />
+                            @Html.ActionLink("Go Back", "ApplicantList", "Employer", new { @id = Model.JobId }, new { @class = "btn btn-default" })
+                        </div>
+                    </div>
+                }
+            </div>
+        </div>
+    </div>
+</div>
+
+

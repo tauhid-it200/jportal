@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Data.Entity;
 using System.Data.Entity.Migrations;
 using System.Linq;
+using System.Linq.Expressions;
 using System.Web;
 using Hiring.Models;
 
@@ -10,6 +11,7 @@ namespace Hiring.Repositories
 {
     public class Repository
     {
+        private enum SearchCategories { JobTitle, JobLocation, OrganizationName, Skill }
         private ApplicationDbContext Db { get; set; }
 
         public Repository()
@@ -137,14 +139,56 @@ namespace Hiring.Repositories
             return Db.Jobs.Include(m => m.Employer).ToList();
         }
 
-        public List<Job> GetJobsByEmployerId(int id)
+        public List<Job> GetJobsByEmployerId(int employerId)
         {
-            return Db.Jobs.Where(m => m.EmployerId == id).ToList();
+            return Db.Jobs.Where(m => m.EmployerId == employerId).Include(m => m.Applicants).ToList();
         }
+
+        public List<Job> GetJobsBySearching(int category, string keyWord)
+        {
+            List<Job> searchedJobList;
+            switch (category)
+            {
+                case (int)SearchCategories.JobTitle:
+                    searchedJobList = Db.Jobs.Include(m => m.Employer).Where(m => m.JobTitle.Contains(keyWord)).ToList();
+                    break;
+                case (int)SearchCategories.JobLocation:
+                    searchedJobList = Db.Jobs.Include(m => m.Employer).Where(m => m.JobLocation.Contains(keyWord)).ToList();
+                    break;
+                case (int)SearchCategories.OrganizationName:
+                    searchedJobList = Db.Jobs.Include(m => m.Employer).Where(m => m.Employer.OrganizationName.Contains(keyWord)).ToList();
+                    break;
+                default:
+                    searchedJobList = Db.Jobs.Include(m => m.Employer).Where(m => m.RequiredSkills.Contains(keyWord)).ToList();
+                    break;
+            }
+
+            return searchedJobList;
+        }
+
+        //public List<JobSeeker> GetApplicantsByJobId(int jobId)
+        //{
+        //    return Db.Jobs.Where(m => m.JobId == jobId).Include(m => m.Applicants).FirstOrDefault();
+        //}
 
         public Job GetJobById(int id)
         {
             return Db.Jobs.Where(m => m.JobId == id).Include(m => m.Applicants).FirstOrDefault();
+        }
+
+        public AppliedJob GetAppliedJobById(int id)
+        {
+            return Db.AppliedJobs.Where(m => m.AppliedJobId == id).Include(m => m.JobSeeker).FirstOrDefault();
+        }
+
+        public AppliedJob GetAppliedJobByJobId(int jobId)
+        {
+            return Db.AppliedJobs.Where(m => m.JobId == jobId).Include(m => m.JobSeeker).FirstOrDefault();
+        }
+
+        public List<AppliedJob> GetAppliedJobListByJobId(int jobId)
+        {
+            return Db.AppliedJobs.Where(m => m.JobId == jobId).Include(m => m.JobSeeker).ToList();
         }
 
         public bool ApplyForJob(AppliedJob appliedJob)
@@ -166,6 +210,22 @@ namespace Hiring.Repositories
             }
         }
 
+        public bool BookmarkJob(BookmarkedJob bookmarkedJob)
+        {
+            try
+            {
+                Db.BookmarkedJobs.Add(bookmarkedJob);
+
+                Db.SaveChanges();
+
+                return true;
+            }
+            catch (Exception)
+            {
+                return false;
+            }
+        }
+
         public bool CheckIfAlreadyApplied(int jobId, int jobSeekerId)
         {
             var appliedJobCollection = Db.AppliedJobs.Where(m => m.JobId == jobId);
@@ -173,6 +233,21 @@ namespace Hiring.Repositories
             foreach (var appliedJob in appliedJobCollection)
             {
                 if (jobSeekerId == appliedJob.JobSeekerId)
+                {
+                    return true;
+                }
+            }
+
+            return false;
+        }
+
+        public bool CheckIfAlreadyBookmarked(int jobId, int jobSeekerId)
+        {
+            var bookmarkedJobCollection = Db.BookmarkedJobs.Where(m => m.JobId == jobId);
+
+            foreach (var bookmarkedJob in bookmarkedJobCollection)
+            {
+                if (jobSeekerId == bookmarkedJob.JobSeekerId)
                 {
                     return true;
                 }
@@ -198,6 +273,11 @@ namespace Hiring.Repositories
         public List<AppliedJob> GetAppliedJobsByJobSeekerId(int jobSeekerId)
         {
             return Db.AppliedJobs.Where(m => m.JobSeekerId == jobSeekerId).Include(m => m.Job).ToList();
+        }
+
+        public List<BookmarkedJob> GetBookmarkedJobsByJobSeekerId(int jobSeekerId)
+        {
+            return Db.BookmarkedJobs.Where(m => m.JobSeekerId == jobSeekerId).Include(m => m.Job).ToList();
         }
     }
 }
